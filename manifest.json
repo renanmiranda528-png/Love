@@ -1,0 +1,10 @@
+{
+  "name": "Rafateamo",
+  "short_name": "rafa",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4285F4",
+  "description": "r",
+  "categories": ["business", "productivity"]
+}
