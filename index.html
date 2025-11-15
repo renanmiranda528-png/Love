@@ -4,92 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LoveTime - Nosso Tempo Juntos</title>
-    <meta name="description" content="Acompanhe cada momento especial do seu relacionamento">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#1282a2">
     <style>
-        html, body {
+        * {
             margin: 0;
             padding: 0;
-            height: 100%;
-            overflow: hidden;
-            background: #f8fafc;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            box-sizing: border-box;
         }
-        
-        .loading {
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0a1128, #001f54);
+            color: #fefcfb;
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            height: 100vh;
-            color: #1282a2;
+            align-items: center;
+            text-align: center;
         }
-        
+        .container {
+            max-width: 500px;
+            padding: 2rem;
+        }
+        .logo {
+            font-size: 4rem;
+            color: #1282a2;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #a0c4ff, #1282a2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        p {
+            font-size: 1.1rem;
+            color: #a0c4ff;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+        .btn {
+            background: linear-gradient(135deg, #1282a2, #034078);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
         .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #e2e8f0;
+            border: 4px solid rgba(18, 130, 162, 0.3);
             border-top: 4px solid #1282a2;
             border-radius: 50%;
+            width: 40px;
+            height: 40px;
             animation: spin 1s linear infinite;
-            margin-bottom: 16px;
+            margin: 2rem auto;
         }
-        
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        
-        iframe {
-            border: none;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.3s ease-in;
-        }
-        
-        iframe.loaded {
-            opacity: 1;
-        }
     </style>
 </head>
 <body>
-    <div class="loading" id="loading">
+    <div class="container">
+        <div class="logo">❤️</div>
+        <h1>LoveTime</h1>
+        <p>Acompanhe cada momento especial do seu relacionamento</p>
+        
         <div class="spinner"></div>
-        <div>Carregando LoveTime...</div>
+        
+        <p>Redirecionando para o aplicativo...</p>
+        
+        <a href="https://script.google.com/macros/s/AKfycbyB4U61rW9nUei-Tdw2Lrcd9TaqvG07iatj3p6wMX8Htt8V18XNx-76sKFtWpjI08dCxQ/exec" 
+           class="btn">
+           Acessar LoveTime
+        </a>
     </div>
-    
-    <iframe 
-        src="https://script.google.com/macros/s/AKfycbyYw5DWxPQJ18RErOQzOkTHpmZbcNUOXAlTeQ3kt4-IEkicFzymi6juUdqlg1fWXauMLQ/exec"
-        id="appFrame"
-        allow="camera; microphone; fullscreen"
-        onload="frameLoaded()">
-    </iframe>
 
     <script>
-        function frameLoaded() {
-            const loading = document.getElementById('loading');
-            const iframe = document.getElementById('appFrame');
-            
-            setTimeout(() => {
-                loading.style.display = 'none';
-                iframe.classList.add('loaded');
-            }, 1000);
-        }
+        // Redirecionamento automático após 3 segundos
+        setTimeout(() => {
+            window.location.href = "https://script.google.com/macros/s/AKfycbyB4U61rW9nUei-Tdw2Lrcd9TaqvG07iatj3p6wMX8Htt8V18XNx-76sKFtWpjI08dCxQ/exec";
+        }, 3000);
         
-        // Service Worker registration for PWA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then((registration) => {
-                        console.log('SW registered: ', registration);
-                    })
-                    .catch((registrationError) => {
-                        console.log('SW registration failed: ', registrationError);
-                    });
-            });
-        }
+        // Redirecionamento imediato se clicar em qualquer lugar
+        document.body.addEventListener('click', function() {
+            window.location.href = "https://script.google.com/macros/s/AKfycbyB4U61rW9nUei-Tdw2Lrcd9TaqvG07iatj3p6wMX8Htt8V18XNx-76sKFtWpjI08dCxQ/exec";
+        });
     </script>
 </body>
 </html>
