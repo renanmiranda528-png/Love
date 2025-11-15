@@ -1,10 +1,24 @@
 {
-  "name": "Rafateamo",
-  "short_name": "rafa",
-  "start_url": ".",
+  "name": "LoveTime - Nosso Tempo Juntos",
+  "short_name": "LoveTime",
+  "description": "Acompanhe o tempo do seu relacionamento de forma especial",
+  "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#4285F4",
-  "description": "r",
-  "categories": ["business", "productivity"]
+  "background_color": "#0a1128",
+  "theme_color": "#1282a2",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["lifestyle", "social"],
+  "lang": "pt-BR"
 }
