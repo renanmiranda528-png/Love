@@ -14,19 +14,19 @@
             font-family: 'Segoe UI', system-ui, sans-serif;
             background: linear-gradient(135deg, #0a1128, #001f54);
             color: #fefcfb;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-        }
-        .container {
-            max-width: 500px;
             padding: 2rem;
         }
+        .container {
+            max-width: 600px;
+        }
         .logo {
-            font-size: 4rem;
+            font-size: 5rem;
             color: #1282a2;
             margin-bottom: 1rem;
             animation: pulse 2s infinite;
@@ -37,74 +37,150 @@
             100% { transform: scale(1); }
         }
         h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, #a0c4ff, #1282a2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        p {
-            font-size: 1.1rem;
+        .subtitle {
+            font-size: 1.5rem;
             color: #a0c4ff;
             margin-bottom: 2rem;
-            line-height: 1.5;
+        }
+        .description {
+            font-size: 1.1rem;
+            color: #a0c4ff;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid #1282a2;
+        }
+        .feature i {
+            font-size: 2rem;
+            color: #1282a2;
+            margin-bottom: 1rem;
         }
         .btn {
             background: linear-gradient(135deg, #1282a2, #034078);
             color: white;
             border: none;
             padding: 1rem 2rem;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             border-radius: 10px;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
             transition: transform 0.3s ease;
+            margin: 0.5rem;
         }
         .btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
         }
-        .spinner {
-            border: 4px solid rgba(18, 130, 162, 0.3);
-            border-top: 4px solid #1282a2;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 2rem auto;
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #1282a2;
+            color: #a0c4ff;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .instructions {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            border-left: 4px solid #1282a2;
+        }
+        .instructions ol {
+            text-align: left;
+            color: #a0c4ff;
+            line-height: 1.8;
+        }
+        .instructions li {
+            margin-bottom: 0.5rem;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <div class="logo">❤️</div>
+        <div class="logo">
+            <i class="fas fa-heart"></i>
+        </div>
+        
         <h1>LoveTime</h1>
-        <p>Acompanhe cada momento especial do seu relacionamento</p>
+        <div class="subtitle">Nosso Tempo Juntos</div>
         
-        <div class="spinner"></div>
-        
-        <p>Redirecionando para o aplicativo...</p>
-        
-        <a href="https://script.google.com/macros/s/AKfycbyB4U61rW9nUei-Tdw2Lrcd9TaqvG07iatj3p6wMX8Htt8V18XNx-76sKFtWpjI08dCxQ/exec" 
-           class="btn">
-           Acessar LoveTime
-        </a>
+        <div class="description">
+            Acompanhe cada momento especial do seu relacionamento com contagem personalizada em tempo real
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-clock"></i>
+                <h3>Contagem em Tempo Real</h3>
+                <p>Anos, meses, semanas, dias e segundos juntos</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-heart"></i>
+                <h3>Conexão de Casal</h3>
+                <p>Conecte-se com seu parceiro e compartilhem a experiência</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Acesso em Qualquer Lugar</h3>
+                <p>Use no celular, tablet ou computador</p>
+            </div>
+        </div>
+
+        <div>
+            <a href="https://script.google.com/macros/s/AKfycbyB4U61rW9nUei-Tdw2Lrcd9TaqvG07iatj3p6wMX8Htt8V18XNx-76sKFtWpjI08dCxQ/exec" 
+               class="btn" 
+               target="_blank">
+               <i class="fas fa-external-link-alt"></i> Acessar LoveTime
+            </a>
+            <br>
+            <small style="color: #88a0cc; display: block; margin-top: 1rem;">
+                O aplicativo abrirá em uma nova aba
+            </small>
+        </div>
+
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> Como usar:</h3>
+            <ol>
+                <li>Clique no botão "Acessar LoveTime" acima</li>
+                <li>Faça login ou crie sua conta</li>
+                <li>Conecte-se com seu parceiro usando o código</li>
+                <li>Defina a data do início do relacionamento</li>
+                <li>Acompanhe seu tempo juntos!</li>
+            </ol>
+        </div>
     </div>
 
     <script>
-        // Redirecionamento automático após 3 segundos
-        setTimeout(() => {
-            window.location.href = "https://script.google.com/macros/s/AKfycbyB4U61rW9nUei-Tdw2Lrcd9TaqvG07iatj3p6wMX8Htt8V18XNx-76sKFtWpjI08dCxQ/exec";
-        }, 3000);
+        // Adicionar efeito de digitação no subtítulo
+        const subtitle = document.querySelector('.subtitle');
+        const originalText = subtitle.textContent;
+        subtitle.textContent = '';
         
-        // Redirecionamento imediato se clicar em qualquer lugar
-        document.body.addEventListener('click', function() {
-            window.location.href = "https://script.google.com/macros/s/AKfycbyB4U61rW9nUei-Tdw2Lrcd9TaqvG07iatj3p6wMX8Htt8V18XNx-76sKFtWpjI08dCxQ/exec";
-        });
+        let i = 0;
+        const typeWriter = () => {
+            if (i < originalText.length) {
+                subtitle.textContent += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        };
+        
+        setTimeout(typeWriter, 1000);
     </script>
 </body>
 </html>
