@@ -4,62 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LoveTime - Nosso Tempo Juntos</title>
+    <meta name="description" content="Acompanhe cada momento especial do seu relacionamento">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1282a2">
     <style>
-        * {
+        html, body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: #f8f9fa;
-        }
-        .app-container {
-            width: 100vw;
-            height: 100vh;
-            position: relative;
-        }
-        iframe {
-            width: 100%;
             height: 100%;
-            border: none;
+            overflow: hidden;
+            background: #f8fafc;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
+        
         .loading {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
             color: #1282a2;
-            z-index: 10;
         }
+        
         .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #1282a2;
-            border-radius: 50%;
             width: 40px;
             height: 40px;
-            animation: spin 2s linear infinite;
-            margin: 0 auto 15px;
+            border: 4px solid #e2e8f0;
+            border-top: 4px solid #1282a2;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 16px;
         }
+        
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.3s ease-in;
+        }
+        
+        iframe.loaded {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
-    <div class="app-container">
-        <div class="loading" id="loading">
-            <div class="spinner"></div>
-            <p>Carregando LoveTime...</p>
-        </div>
-        <iframe 
-            src="https://script.google.com/macros/s/AKfycbyB4U61rW9nUei-Tdw2Lrcd9TaqvG07iatj3p6wMX8Htt8V18XNx-76sKFtWpjI08dCxQ/exec"
-            id="appFrame"
-            onload="document.getElementById('loading').style.display='none'"
-            allow="camera; microphone; fullscreen">
-        </iframe>
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <div>Carregando LoveTime...</div>
     </div>
+    
+    <iframe 
+        src="https://script.google.com/macros/s/AKfycbyB4U61rW9nUei-Tdw2Lrcd9TaqvG07iatj3p6wMX8Htt8V18XNx-76sKFtWpjI08dCxQ/exec"
+        id="appFrame"
+        allow="camera; microphone; fullscreen"
+        onload="frameLoaded()">
+    </iframe>
+
+    <script>
+        function frameLoaded() {
+            const loading = document.getElementById('loading');
+            const iframe = document.getElementById('appFrame');
+            
+            setTimeout(() => {
+                loading.style.display = 'none';
+                iframe.classList.add('loaded');
+            }, 1000);
+        }
+        
+        // Service Worker registration for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>
