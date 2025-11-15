@@ -4,44 +4,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LoveTime - Nosso Tempo Juntos</title>
+    <meta name="description" content="Acompanhe cada momento especial do seu relacionamento">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1282a2"/>
     <style>
-        body {
+        html, body {
             margin: 0;
             padding: 0;
-            background: #0a1128;
-            color: white;
-            font-family: Arial, sans-serif;
-            height: 100vh;
+            height: 100%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a1128, #001f54);
+        }
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a1128, #001f54);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-        }
-        h1 {
-            color: #1282a2;
-            margin-bottom: 20px;
-        }
-        a {
-            color: #a0c4ff;
-            font-size: 18px;
-            text-decoration: none;
-            border: 2px solid #1282a2;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-        a:hover {
-            background: #1282a2;
             color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            z-index: 1000;
+        }
+        .loading-content {
+            text-align: center;
+            padding: 2rem;
+        }
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .loading-text {
+            font-size: 1.2rem;
+            color: #a0c4ff;
+            margin-bottom: 2rem;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top: 4px solid #1282a2;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <h1>LoveTime</h1>
-    <p>Acompanhe cada momento especial do seu relacionamento</p>
-    <a href="https://script.google.com/macros/s/AKfycbyNuSkPclPq6bEj7qxv-_9jsQBo-rHdoSY7eSyhg5fJRbtsIXJn8PymPupl8P3A3wF4aA/exec">
-        Clique para acessar o LoveTime
-    </a>
+    <div class="loading" id="loading">
+        <div class="loading-content">
+            <div class="logo">💝</div>
+            <div class="loading-text">LoveTime</div>
+            <div class="spinner"></div>
+            <div style="margin-top: 1rem; font-size: 0.9rem; color: #a0c4ff;">
+                Carregando nosso tempo especial...
+            </div>
+        </div>
+    </div>
+    
+    <iframe 
+        src="https://script.google.com/macros/s/AKfycbyNuSkPclPq6bEj7qxv-_9jsQBo-rHdoSY7eSyhg5fJRbtsIXJn8PymPupl8P3A3wF4aA/exec" 
+        id="appFrame"
+        style="display: none;"
+        allow="camera; microphone; fullscreen"
+    ></iframe>
+
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('appFrame').style.display = 'block';
+                
+                // Focar no iframe para melhor UX
+                document.getElementById('appFrame').focus();
+            }, 2500);
+        });
+
+        // Tratar erros de carregamento do iframe
+        document.getElementById('appFrame').addEventListener('load', function() {
+            console.log('LoveTime carregado com sucesso!');
+        });
+
+        document.getElementById('appFrame').addEventListener('error', function() {
+            document.getElementById('loading').innerHTML = `
+                <div class="loading-content">
+                    <div class="logo">😔</div>
+                    <div class="loading-text">Erro ao carregar</div>
+                    <div style="margin-top: 1rem; color: #ff6b6b;">
+                        Não foi possível conectar ao LoveTime.<br>
+                        Verifique sua conexão e tente novamente.
+                    </div>
+                    <button onclick="location.reload()" style="
+                        margin-top: 1rem;
+                        background: #1282a2;
+                        color: white;
+                        border: none;
+                        padding: 10px 20px;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        font-size: 1rem;
+                    ">Tentar Novamente</button>
+                </div>
+            `;
+        });
+    </script>
 </body>
 </html>
