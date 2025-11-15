@@ -4,183 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LoveTime - Nosso Tempo Juntos</title>
+    <meta name="description" content="Acompanhe cada momento especial do seu relacionamento">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1282a2">
     <style>
-        * {
+        html, body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            height: 100%;
+            overflow: hidden;
+            background: #f8fafc;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(135deg, #0a1128, #001f54);
-            color: #fefcfb;
-            min-height: 100vh;
+        
+        .loading {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 2rem;
-        }
-        .container {
-            max-width: 600px;
-        }
-        .logo {
-            font-size: 5rem;
+            justify-content: center;
+            height: 100vh;
             color: #1282a2;
-            margin-bottom: 1rem;
-            animation: pulse 2s infinite;
         }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e2e8f0;
+            border-top: 4px solid #1282a2;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 16px;
         }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #a0c4ff, #1282a2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
-        .subtitle {
-            font-size: 1.5rem;
-            color: #a0c4ff;
-            margin-bottom: 2rem;
-        }
-        .description {
-            font-size: 1.1rem;
-            color: #a0c4ff;
-            margin-bottom: 3rem;
-            line-height: 1.6;
-        }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-        .feature {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border: 1px solid #1282a2;
-        }
-        .feature i {
-            font-size: 2rem;
-            color: #1282a2;
-            margin-bottom: 1rem;
-        }
-        .btn {
-            background: linear-gradient(135deg, #1282a2, #034078);
-            color: white;
+        
+        iframe {
             border: none;
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
-            border-radius: 10px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: transform 0.3s ease;
-            margin: 0.5rem;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.3s ease-in;
         }
-        .btn:hover {
-            transform: translateY(-3px);
-        }
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid #1282a2;
-            color: #a0c4ff;
-        }
-        .instructions {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-            border-left: 4px solid #1282a2;
-        }
-        .instructions ol {
-            text-align: left;
-            color: #a0c4ff;
-            line-height: 1.8;
-        }
-        .instructions li {
-            margin-bottom: 0.5rem;
+        
+        iframe.loaded {
+            opacity: 1;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <div class="logo">
-            <i class="fas fa-heart"></i>
-        </div>
-        
-        <h1>LoveTime</h1>
-        <div class="subtitle">Nosso Tempo Juntos</div>
-        
-        <div class="description">
-            Acompanhe cada momento especial do seu relacionamento com contagem personalizada em tempo real
-        </div>
-
-        <div class="features">
-            <div class="feature">
-                <i class="fas fa-clock"></i>
-                <h3>Contagem em Tempo Real</h3>
-                <p>Anos, meses, semanas, dias e segundos juntos</p>
-            </div>
-            <div class="feature">
-                <i class="fas fa-heart"></i>
-                <h3>Conexão de Casal</h3>
-                <p>Conecte-se com seu parceiro e compartilhem a experiência</p>
-            </div>
-            <div class="feature">
-                <i class="fas fa-mobile-alt"></i>
-                <h3>Acesso em Qualquer Lugar</h3>
-                <p>Use no celular, tablet ou computador</p>
-            </div>
-        </div>
-
-        <div>
-            <a href="https://script.google.com/macros/s/AKfycbyB4U61rW9nUei-Tdw2Lrcd9TaqvG07iatj3p6wMX8Htt8V18XNx-76sKFtWpjI08dCxQ/exec" 
-               class="btn" 
-               target="_blank">
-               <i class="fas fa-external-link-alt"></i> Acessar LoveTime
-            </a>
-            <br>
-            <small style="color: #88a0cc; display: block; margin-top: 1rem;">
-                O aplicativo abrirá em uma nova aba
-            </small>
-        </div>
-
-        <div class="instructions">
-            <h3><i class="fas fa-info-circle"></i> Como usar:</h3>
-            <ol>
-                <li>Clique no botão "Acessar LoveTime" acima</li>
-                <li>Faça login ou crie sua conta</li>
-                <li>Conecte-se com seu parceiro usando o código</li>
-                <li>Defina a data do início do relacionamento</li>
-                <li>Acompanhe seu tempo juntos!</li>
-            </ol>
-        </div>
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <div>Carregando LoveTime...</div>
     </div>
+    
+    <iframe 
+        src="https://script.google.com/macros/s/AKfycbyB4U61rW9nUei-Tdw2Lrcd9TaqvG07iatj3p6wMX8Htt8V18XNx-76sKFtWpjI08dCxQ/exec"
+        id="appFrame"
+        allow="camera; microphone; fullscreen"
+        onload="frameLoaded()">
+    </iframe>
 
     <script>
-        // Adicionar efeito de digitação no subtítulo
-        const subtitle = document.querySelector('.subtitle');
-        const originalText = subtitle.textContent;
-        subtitle.textContent = '';
+        function frameLoaded() {
+            const loading = document.getElementById('loading');
+            const iframe = document.getElementById('appFrame');
+            
+            setTimeout(() => {
+                loading.style.display = 'none';
+                iframe.classList.add('loaded');
+            }, 1000);
+        }
         
-        let i = 0;
-        const typeWriter = () => {
-            if (i < originalText.length) {
-                subtitle.textContent += originalText.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            }
-        };
-        
-        setTimeout(typeWriter, 1000);
+        // Service Worker registration for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
     </script>
 </body>
 </html>
